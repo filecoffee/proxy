@@ -1,0 +1,10 @@
+{
+  "Version": "13.0.1",
+  "Name": "file.coffee proxy instance",
+  "DestinationType": "ImageUploader, TextUploader, FileUploader",
+  "RequestMethod": "POST",
+  "RequestURL": "https://file.coffee/api/v1/upload",
+  "Body": "MultipartFormData",
+  "FileFormName": "file",
+  "URL": "https://your-domain.com/$json:filename$"
+}

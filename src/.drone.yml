@@ -1,0 +1,54 @@
+kind: pipeline
+type: docker
+name: arm
+
+platform:
+  os: linux
+  arch: arm
+
+steps:
+  - name: verify
+    image: golang
+    commands:
+      - cd src
+      - go mod verify
+
+  - name: dependencies
+    image: golang
+    commands:
+      - cd src
+      - go mod download
+
+  - name: building
+    image: golang
+    commands:
+      - cd src
+      - go build main.go
+
+---
+kind: pipeline
+type: docker
+name: amd64
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: verify
+    image: golang
+    commands:
+      - cd src
+      - go mod verify
+
+  - name: dependencies
+    image: golang
+    commands:
+      - cd src
+      - go mod download
+
+  - name: building
+    image: golang
+    commands:
+      - cd src
+      - go build main.go
