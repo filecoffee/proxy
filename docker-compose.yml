@@ -4,7 +4,23 @@ services:
     container_name: proxy
     build: ./src
     restart: always
+    networks:
+      - base
+
+  nginx:
+    container_name: nginx
+    restart: always
+    build: ./nginx/
     expose:
       - "80"
     ports:
       - "80:80"
+    links:
+      - proxy
+    depends_on:
+      - proxy
+    networks:
+      - base
+
+networks:
+  base:

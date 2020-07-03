@@ -1,6 +1,6 @@
 FROM golang:latest
 
-LABEL maintainer="file.coffee <hi@file.coffeer>"
+LABEL maintainer="file.coffee <hi@file.coffee>"
 
 WORKDIR /app
 
@@ -12,6 +12,6 @@ COPY . .
 
 RUN go build -o main .
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["./main"]
