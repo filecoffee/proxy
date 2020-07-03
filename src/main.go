@@ -29,7 +29,6 @@ func main() {
 			return
 		}
 		c.Send(request.Body)
-		//log.Print(request.Body)
 		request.Body.Close()
 		return
 	})
@@ -40,5 +39,5 @@ func main() {
 		})
 	})
 
-	_ = app.Listen(8080)
+	_ = app.Listen("0.0.0.0:8080")
 }
