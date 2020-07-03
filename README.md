@@ -12,14 +12,14 @@ The proxy will make requests to the file.coffee server and act as a seperate web
 * A server with Docker and Docker compose
 
 # Setup
-Since it's still in development, the easiest way to set it up is to run the following commands:
+### 🐳 Deploy it to port 80 with NGINX
+To just run the instance, simply do `docker-compose up` in the root of this project after cloning it. If you want to deploy it you can simply run `docker-compose up -d` and it will deploy in the background.
+
+### 🛠 Manual setup (not all features)
 1. Go to the `src` folder
 2. `go mod download` to collect all the dependencies
 3. `go run main.go`
 4. It's running
-
-
-**Currently not functioning** To just run the instance, simply do `docker-compose up` in the root of this project after cloning it. If you want to deploy it you can simply run `docker-compose up -d` and it will deploy in the background.
 
 # ShareX
 It's really easy to use the proxy instance with ShareX, simply edit the `sharex-config.sxcu` file in the root of the project.
