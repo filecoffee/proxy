@@ -22,14 +22,15 @@ func main() {
 
 	app.Get("/u/:upload", func(c *fiber.Ctx) {
 		request := modules.GetUpload(c.Params("upload"))
-		defer request.Body.Close()
-		if request.Status != "200" {
+		if request.StatusCode != http.StatusOK {
 			_ = c.Status(http.StatusNotFound).Render("index", fiber.Map{
 				"Content": "Upload not found",
 			})
 			return
 		}
 		c.Send(request.Body)
+		//log.Print(request.Body)
+		request.Body.Close()
 		return
 	})
 
