@@ -15,6 +15,8 @@ up.
 
 # Setup
 ### 🐳 Deploy it to port 80 with NGINX (recommended)
+Copy `.env.example` to `.env` and fill in the file.
+
 To just run the instance, simply do `docker-compose up` in the root of this project after cloning it. If you want to 
 deploy it you can simply run `docker-compose up -d` and it will deploy in the background.
 
