@@ -4,6 +4,7 @@ services:
     container_name: proxy
     build: ./src
     restart: always
+    env_file: .env
     networks:
       - base
 

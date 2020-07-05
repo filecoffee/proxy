@@ -4,10 +4,16 @@ import (
 	"github.com/filecoffee/proxy/modules"
 	"github.com/gofiber/fiber"
 	"github.com/gofiber/template/html"
+	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
+	/* sets up the cache */
+	modules.CacheSetup()
+	modules.Setup()
+
 	engine := html.New("./views", ".html")
 	engine.Reload(true)
 	app := fiber.New(&fiber.Settings{
@@ -21,6 +27,12 @@ func main() {
 	})
 
 	app.Get("/u/:upload", func(c *fiber.Ctx) {
+		data, err := modules.GetFromCache(c.Params("upload"))
+		if err == nil {
+			c.Send(data)
+			return
+		}
+
 		request := modules.GetUpload(c.Params("upload"))
 		if request.StatusCode != http.StatusOK {
 			_ = c.Status(http.StatusNotFound).Render("index", fiber.Map{
@@ -30,6 +42,17 @@ func main() {
 		}
 		c.Send(request.Body)
 		request.Body.Close()
+
+		if os.Getenv("CACHE") == "true" {
+			if modules.CheckIfCached(c.Params("upload")) {
+				return
+			}
+			err = modules.Cache(c.Params("upload"), modules.GetUpload(c.Params("upload")))
+			if err != nil {
+				log.Print(err)
+			}
+		}
+
 		return
 	})
 
