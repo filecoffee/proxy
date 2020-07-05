@@ -5,9 +5,9 @@ Use your own domain with file.coffee
 The proxy will make requests to the file.coffee server and act as a seperate webserver serving the file.coffee content. It's dockerized and will in the future have caching and automatic SSL certificates.
 
 # Todo
-- [ ] Add a caching system, like Varnish.
 - [ ] Making it automatically generate Let's Encrypt certificates.
-- [ ] The proxy is currently a bit slower than using file.coffee directly, we're still looking into methods to speed it
+- [x] ~~Add a caching system, like Varnish.~~ Made a simple cache system that saves the file after the first request for as long as needed.
+- [x] ~~The proxy is currently a bit slower than using file.coffee directly, we're still looking into methods to speed it~~ Using Caching, the 2nd request will be a lot faster.
 up.
 
 # Requirements
