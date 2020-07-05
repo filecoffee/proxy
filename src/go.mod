@@ -5,4 +5,5 @@ go 1.14
 require (
 	github.com/gofiber/fiber v1.12.3
 	github.com/gofiber/template v1.5.3
+	github.com/robfig/cron/v3 v3.0.0
 )

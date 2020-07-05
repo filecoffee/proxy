@@ -1,17 +1,25 @@
 package modules
 
 import (
+	"github.com/robfig/cron/v3"
 	"log"
 	"os"
 	"path/filepath"
+	"strconv"
 	"time"
 )
 
 func Setup() {
-	checkFiles()
+	if os.Getenv("CACHE") == "false" {
+		return
+	}
+	c := cron.New()
+	_, _ = c.AddFunc("* * * * *", func() { checkFiles() })
+	c.Start()
 }
 
 func checkFiles() {
+	log.Print("[PROXY] Checking all uploads")
 	files := getFiles()
 	for _, file := range files {
 		checkFile(file)
@@ -26,11 +34,10 @@ func checkFile(upload string) {
 	}
 
 	modifiedTime := file.ModTime()
-
 	fileTime := modifiedTime.UnixNano() / int64(time.Millisecond)
 	currentTime := time.Now().UnixNano() / int64(time.Millisecond)
-
-	if currentTime-fileTime > 7*86400000 {
+	days, _ := strconv.ParseInt(os.Getenv("CACHE_DAYS"), 10, 64)
+	if currentTime-fileTime > days*int64(24*60*60*1000) {
 		_ = os.Remove(upload)
 	}
 }

@@ -12,6 +12,7 @@ import (
 func main() {
 	/* sets up the cache */
 	modules.CacheSetup()
+	modules.Setup()
 
 	engine := html.New("./views", ".html")
 	engine.Reload(true)
@@ -52,7 +53,6 @@ func main() {
 			}
 		}
 
-		modules.Setup()
 		return
 	})
 
