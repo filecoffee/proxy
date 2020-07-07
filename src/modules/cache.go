@@ -3,6 +3,7 @@ package modules
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"github.com/gabriel-vasile/mimetype"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -40,17 +41,18 @@ func Cache(upload string, request *http.Response) (err error) {
 	return nil
 }
 
-func GetFromCache(upload string) (result []byte, err error) {
+func GetFromCache(upload string) (result []byte, _mime string, err error) {
 	if os.Getenv("CACHE") == "false" {
-		return nil, nil
+		return nil, "", nil
 	}
 	md5Hash := stringToMd5(upload)
 	pwd, _ := os.Getwd()
 	data, err := ioutil.ReadFile(filepath.Join(pwd, "../cache/"+md5Hash))
 	if err != nil {
-		return nil, err
+		return nil, "", err
 	}
-	return data, nil
+	mime := mimetype.Detect(data)
+	return data, mime.String(), nil
 
 }
 

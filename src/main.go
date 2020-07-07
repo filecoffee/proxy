@@ -27,8 +27,9 @@ func main() {
 	})
 
 	app.Get("/u/:upload", func(c *fiber.Ctx) {
-		data, err := modules.GetFromCache(c.Params("upload"))
+		data, mime, err := modules.GetFromCache(c.Params("upload"))
 		if err == nil {
+			c.Set("content-type", mime)
 			c.Send(data)
 			return
 		}
@@ -40,6 +41,7 @@ func main() {
 			})
 			return
 		}
+		c.Set("content-type", c.Get("content-type"))
 		c.Send(request.Body)
 		request.Body.Close()
 
