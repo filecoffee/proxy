@@ -41,7 +41,7 @@ func main() {
 			})
 			return
 		}
-		c.Set("content-type", c.Get("content-type"))
+		c.Set("Content-Type", c.Get("Content-Type"))
 		c.Send(request.Body)
 		request.Body.Close()
 
