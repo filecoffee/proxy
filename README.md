@@ -1,3 +1,6 @@
+# ⚠ Under construction
+We're slowly working on a new version of file.coffee. Once we release the new version we'll change the proxy.
+
 # proxy [![Build Status](https://drone.lngzl.nl/api/badges/filecoffee/proxy/status.svg)](https://drone.lngzl.nl/filecoffee/proxy)
 Use your own domain with file.coffee
 
