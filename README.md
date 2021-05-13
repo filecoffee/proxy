@@ -26,6 +26,9 @@ deploy it you can simply run `docker-compose up -d` and it will deploy in the ba
 3. `go run main.go`
 4. It's running
 
+## Public
+If you don't want to set it up yourself, you can make an `A record` that forwards to `169.48.169.45`. You'll have to use `Cloudflare` with SSL on `flexible`.
+
 # ShareX
 It's really easy to use the proxy instance with ShareX, simply edit the `sharex-config.sxcu` file in the root of the
  project.
