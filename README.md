@@ -26,8 +26,8 @@ deploy it you can simply run `docker-compose up -d` and it will deploy in the ba
 3. `go run main.go`
 4. It's running
 
-## Public
-If you don't want to set it up yourself, you can make an `A record` that forwards to `169.48.169.45`. You'll have to use `Cloudflare` with SSL on `flexible`.
+### 📖 Public
+If you don't want to set it up yourself, you can make an `A record` that forwards to `public-us-proxy.file.coffee` or `169.48.169.45` if it doesn't work. You'll have to use `Cloudflare` with SSL on `flexible`. _Please keep in mind that this means that the traffic is not encrypted between the proxy and Cloudflare but the files will still be fetched using HTTPs from file.coffee and served to you using HTTPs. Also, this Proxy can change IP at any time and we try to keep it as secure as possible but the IP is public and more prone to attacks._
 
 # ShareX
 It's really easy to use the proxy instance with ShareX, simply edit the `sharex-config.sxcu` file in the root of the
